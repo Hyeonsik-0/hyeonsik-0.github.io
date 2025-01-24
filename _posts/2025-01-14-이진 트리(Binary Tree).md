@@ -2,9 +2,9 @@
 title: 이진 트리(Binary Tree)
 date: 2025-01-14 11:14:00 +09:00
 last_modified_at: 2025-01-15 11:01:00 +09:00
-categories: [Study, DataStructure]
+categories: [Study, Data Structure]
 tags:
-  [
+    [
     이진 트리,
     Binary Tree,
     이진 트리 탐색,
@@ -15,7 +15,7 @@ tags:
     Heap,
     최대 힙,
     최소 힙,
-  ]
+    ]
 ---
 # 이진 트리(Binary Tree)
 
@@ -35,6 +35,7 @@ tags:
 6.  힙(Heap)
     -   최대 힙(Max Heap)
     -   최소 힙(Min Heap)
+7.  내부 경로 길이와 외부 경로 길이
 
 ## 이진 트리의 정의
 
@@ -46,7 +47,8 @@ tags:
 ## 이진 트리의 성질
 
 -   레벨 i에서의 최대 노드 수: 2^(i-1) (루트는 레벨 1)
--   깊이가 k일 때 최대 노드 수: 2^k-1   
+-   깊이가 k일 때 최대 노드 수: 2^k-1
+-   깊이가 k일 때 최소 노드 수: k
    
 ## 이진 트리의 종류
 
@@ -60,6 +62,9 @@ tags:
 -   포화 이진 트리(Perfect Binary Tree)
     -   깊이가 k이고 노드 수가 2^k-1개여야 함
     -   완전 이진 트리이면서 전 이진 트리임   
+-   편향(사향) 이진 트리(Skewed Binary Tree)
+    -   왼쪽 이나 오른쪽 서브 트리만 가지는 트리
+    -   한 방향으로만 노드를 갖는 트리
        
 ## 이진 트리의 탐색
 
@@ -69,11 +74,11 @@ tags:
     
     ```cpp
     void Preorder(TreeNode *node) { 
-      if (node != nullptr) { 
-          cout << node->data << " "; 
-          preorder(node->leftChild); 
-          preorder(node->rightChild); 
-      } 
+        if (node != nullptr) { 
+            cout << node->data << " "; 
+            preorder(node->leftChild); 
+            preorder(node->rightChild); 
+        } 
     }
     ```
     
@@ -81,11 +86,11 @@ tags:
     
     ```cpp
     void Inoder(TreeNode *node) { 
-      if (node != nullptr) { 
-          Inorder(node->leftChild); 
-          cout << node->data << " "; 
-          Inorder(node->rightChild); 
-      } 
+        if (node != nullptr) { 
+            Inorder(node->leftChild); 
+            cout << node->data << " "; 
+            Inorder(node->rightChild); 
+        } 
     }
     ```
     
@@ -93,11 +98,11 @@ tags:
     
     ```cpp
     void Postoder(TreeNode *node) { 
-      if (node != nullptr) { 
-          Postorder(node->leftChild); 
-          Postorder(node->rightChild); 
-          cout << node->data << " "; 
-      } 
+        if (node != nullptr) { 
+            Postorder(node->leftChild); 
+            Postorder(node->rightChild); 
+            cout << node->data << " "; 
+        } 
     }
     ```
 
@@ -109,13 +114,13 @@ tags:
     void LevelOrder(TreeNode *root) { 
         if (root == nullptr) return; 
         queue<TreeNode*> q; 
-        q.push(root); 
-   	    while (!q.empty()) { 
-       	    TreeNode* node = q.front(); q.pop(); 
-       	    cout << node->data << " "; 
-       	    if (node->leftChild != nullptr) q.push(node->leftChild); 
-       	    if (node->rightChilde != nullptr) q.push(node->rightChild); 
-   	    }
+        q.push(root);
+        while (!q.empty()) { 
+            TreeNode* node = q.front(); q.pop(); 
+            cout << node->data << " "; 
+            if (node->leftChild != nullptr) q.push(node->leftChild); 
+            if (node->rightChilde != nullptr) q.push(node->rightChild); 
+        }
     }
     ```
 
@@ -210,3 +215,26 @@ tags:
         heap[currentNode] = lastE;
     }
     ```
+
+##  내부 경로 길이와 외부 경로 길이
+
+### 내부 경로 길이(Internal Path Length)
+-   이진 트리의 각 노드의 depth의 합
+
+### 외부 경로 길이(External Path Length)
+-   확장된 이진 트리에 새로 추가된 노드의 depth의 합
+    >   기존의 이진 트리의 단말 노드에 새롭게 노드를 추가하여 확장된 이진 트리를 생성할 수 있음
+-   **EPL = IPL + 2n(n은 내부 노드의 수)**가 성립
+
+### 가중 경로 길이(Weighted Path Length)
+-   확장된 이진 트리에 새로 추가된 노드의 depth * 노드의 weight의 합
+    >   가중치가 모두 1인 경우, 가중 경로 길이 = 외부 경로 길이
+
+### 예제
+
+-   예제 1.
+    >   이진 트리의 내부 경로 길이와 외부 경로 길이를 구하시오.   
+    >   <a href = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png"><img src = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png"></a>
+-   풀이 1.
+    >   내부 경로 길이 = 6(루트의 depth = 0)   
+    >   외부 경로 길이 = 6 + 2*5 = 16
