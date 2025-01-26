@@ -234,7 +234,7 @@ tags:
 
 -   예제 1.
     >   이진 트리의 내부 경로 길이와 외부 경로 길이를 구하시오.   
-    >   <a href = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png"><img src = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png"></a>
+    >   <a href = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png"><img src = "https://media.geeksforgeeks.org/wp-content/uploads/20191014013937/Extended-1024x421.png" alt = "확장된 이진 트리를 나타내는 이미지"></a>
 -   풀이 1.
     >   내부 경로 길이 = 6(루트의 depth = 0)   
     >   외부 경로 길이 = 6 + 2*5 = 16
